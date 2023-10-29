@@ -99,6 +99,7 @@ SERIAL_RELEASE/
 
 # People usually build Trilinos in a 'build' directory. Ignore it.
 build*/
+install/
 
 packages/tpetra/test/MatrixMatrix/matrices/*.m
 
