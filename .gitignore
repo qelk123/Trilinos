@@ -161,3 +161,6 @@ rsync.*
 
 # pycharm ide
 .idea
+
+*.mtx
+*.npy

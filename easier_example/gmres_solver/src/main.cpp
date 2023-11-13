@@ -62,8 +62,8 @@ int read_mtx_file(std::string file_name, std::string & output_str) {
 
 // export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 int main(int argc, char *argv[]) {
-  std::string matrix_file_path = "/home/v-yinuoliu/code/tvms/output_matrix_medium_true.mtx";
-  std::string rhs_file_path = "/home/v-yinuoliu/code/tvms/b_medium_true.npy";
+  std::string matrix_file_path = "../../data/output_matrix_medium_true.mtx";
+  std::string rhs_file_path = "../../data/b_medium_true.npy";
 
 
   using Teuchos::ParameterList;
@@ -123,14 +123,13 @@ int main(int argc, char *argv[]) {
     std::cout << "local vector length for rank " << myRank << " is:" << x->getLocalLength() << "\n"; 
 
     // Fill your custom RHS vector here
-    for (int i = 0; i < x->getLocalLength(); ++i) {  
+    for (size_t i = 0; i < x->getLocalLength(); ++i) {  
       rhs->replaceLocalValue(i, data[start_global_index + i]);
       x->replaceLocalValue(i, 0.0);
     }
     ////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
-    *out << ">> II. Create a " << "preconditioned ";
-    *out << "GMRES solver from the Belos package." << std::endl;
+    *out << ">> II. Create a " << "GMRES solver from the Belos package." << std::endl;
 
     // Create Belos iterative linear solver
     RCP<solver_type> solver = Teuchos::null;

@@ -1,0 +1,1 @@
+docker run -d -v /home/v-yinuoliu/code/Trilinos/easier_example:/app/easier_example -it mprr10cr.azurecr.io/easier/testdocker:1 bash

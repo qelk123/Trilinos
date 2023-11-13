@@ -4,11 +4,6 @@
 
 #include <string>
 
-#include <Galeri_XpetraProblemFactory.hpp>
-#include <Galeri_XpetraMatrixTypes.hpp>
-#include <Galeri_XpetraParameters.hpp>
-#include <Galeri_XpetraUtils.hpp>
-#include <Galeri_XpetraMaps.hpp>
 
 #include <Teuchos_Comm.hpp>
 #include <Teuchos_RCP.hpp>
@@ -16,13 +11,6 @@
 #include <Tpetra_CrsMatrix.hpp>
 #include <Tpetra_Vector.hpp>
 
-#include <Xpetra_CrsMatrix.hpp>
-#include <Xpetra_CrsMatrixWrap.hpp>
-#include <Xpetra_Map.hpp>
-#include <Xpetra_MapFactory.hpp>
-#include <Xpetra_Matrix.hpp>
-#include <Xpetra_MultiVector.hpp>
-#include <Xpetra_TpetraCrsMatrix.hpp>
 
 // using Scalar = Tpetra::CrsMatrix<>::scalar_type;
 // using LocalOrdinal = Tpetra::CrsMatrix<double, int, long long>::local_ordinal_type;
