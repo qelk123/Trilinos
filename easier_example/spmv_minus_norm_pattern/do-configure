@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SOURCE_DIR=../src
+BUILD_DIR=`pwd`
+DOCKER=ON
+if [[ ${1} == "for_local" ]] 
+then
+  DOCKER=OFF
+fi
+
+cmake -DFOR_DOCKER=${DOCKER}\
+  ${SOURCE_DIR}

@@ -1,19 +1,23 @@
 # CMAKE File for "ex_03_solve" application building against an installed Trilinos
 
 cmake_minimum_required(VERSION 3.17.1)
-
+option(FOR_DOCKER "An option for docker or local build" ON)
 # Declare project but don't process compilers yet
 #
 # You must do this before calling find_package(Trilinos) when
 # BUILD_SHARED_LIBS=ON or you get a lot of nasty warnings.
 #
-project(ex_03_solve CXX)
+project(ex_03_solve NONE)
 
 # Disable Kokkos warning about not supporting C++ extensions
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Get Trilinos as one entity but require the packages being used
-find_package(Trilinos REQUIRED PATHS /app/Trilinos-trilinos-release-14-4-0/install/lib/cmake/Trilinos NO_DEFAULT_PATH COMPONENTS Belos Ifpack2 Teuchos Tpetra) 
+if(FOR_DOCKER)  
+  find_package(Trilinos REQUIRED PATHS /app/Trilinos-trilinos-release-14-4-0/install/lib/cmake/Trilinos NO_DEFAULT_PATH COMPONENTS Belos Ifpack2 Teuchos Tpetra) 
+else()
+  find_package(Trilinos REQUIRED PATHS /home/v-yinuoliu/code/Trilinos/install/lib/cmake/Trilinos NO_DEFAULT_PATH COMPONENTS Belos Galeri Ifpack2 Teuchos Tpetra)  
+endif()
 # find_package(Trilinos REQUIRED PATHS /home/v-yinuoliu/code/Trilinos/install/lib/cmake/Trilinos COMPONENTS Belos Galeri Ifpack2 Teuchos Tpetra)
 
 # Echo trilinos build info just for fun
@@ -43,11 +47,16 @@ set(CMAKE_Fortran_FLAGS  "${Trilinos_Fortran_COMPILER_FLAGS} ${CMAKE_Fortran_FLA
 # End of setup and error checking.
 
 # Now enable the compilers now that we have gotten them from Trilinos
-# enable_language(C)
-# enable_language(CXX)
-# if (CMAKE_Fortran_COMPILER)
-#   enable_language(Fortran)
-# endif()
+if(FOR_DOCKER)  
+  message(STATUS "BUILD FOR DOCKER")  
+else()  
+  message(STATUS "BUILD FOR LOCAL")
+  enable_language(C)
+  enable_language(CXX)
+  if (CMAKE_Fortran_COMPILER)
+    enable_language(Fortran)
+  endif()  
+endif()  
 # NOTE: Technically this project only has C++ code so we could only call
 # enable_language(CXX) here.  But we leave the enable of C and Fortran here to
 # demonstrate how to do this.  Also, note that Fortran is optional in Trilinos
