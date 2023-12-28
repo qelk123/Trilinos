@@ -53,6 +53,7 @@ cmake \
     -D Tpetra_INST_SERIAL:BOOL=ON \
     -D Tpetra_INST_CUDA:BOOL=ON \
     -D Tpetra_INST_OPENMP:BOOL=ON \
+    -D Tpetra_ASSUME_GPU_AWARE_MPI=ON \
   \
   -D TPL_ENABLE_MPI:BOOL=ON \
   -D TPL_ENABLE_BLAS:BOOL=ON \
